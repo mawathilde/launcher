@@ -1,5 +1,5 @@
 appId: 'wizardsstorylauncher'
-productName: 'wizards Story'
+productName: 'WizardsStoryLauncher'
 artifactName: '${productName}-setup-${version}.${ext}'
 
 copyright: 'Copyright © 2019-2022 Wizards Story'
