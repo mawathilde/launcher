@@ -38,7 +38,7 @@ mac:
 
 # Linux Configuration
 linux: 
-  target: 'AppImage'
+  target: 'deb'
   maintainer: 'Wizards Story'
   vendor: 'Wizards Story'
   synopsis: 'Modded Minecraft Launcher'
