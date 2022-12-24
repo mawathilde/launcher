@@ -38,7 +38,10 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          name: "🚀 New Release"
+          name: "🚀 Draft Release"
           draft: true
           files: |
-            build/libs/*.jar
+            dist/latest*.yml
+            dist/*.exe
+            dist/*.dmg
+            dist/*.deb
