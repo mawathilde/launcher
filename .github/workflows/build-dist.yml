@@ -35,3 +35,10 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run dist
         shell: bash
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: "🚀 New Release"
+          draft: true
+          files: |
+            build/libs/*.jar
