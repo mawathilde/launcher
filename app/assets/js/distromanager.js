@@ -175,7 +175,7 @@ class Module {
     }
 
     _resolveArtifactPath(artifactPath, serverid){
-        const pth = artifactPath == null ? path.join(...this.getGroup().split('.'), this.getID(), this.getVersion(), `${this.getID()}-${this.getVersion()}${this.artifactClassifier != undefined ? `-${this.artifactClassifier}` : ''}.${this.getExtension()}`) : artifactPath
+        const pth = artifactPath == null ? path.join(...this.getGroup().split('.'), this.getID(), "latest", `${this.getID()}-latest${this.artifactClassifier != undefined ? `-${this.artifactClassifier}` : ''}.${this.getExtension()}`) : artifactPath
 
         switch (this.type){
             case exports.Types.Library:
