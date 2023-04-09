@@ -16,17 +16,17 @@
     "lint": "eslint --config .eslintrc.json ."
   },
   "engines": {
-    "node": "16.x.x"
+    "node": "18.x.x"
   },
   "dependencies": {
     "@electron/remote": "^2.0.8",
     "adm-zip": "^0.5.9",
     "async": "^3.2.3",
     "discord-rpc-patch": "^4.0.1",
-    "ejs": "^3.1.8",
+    "ejs": "^3.1.9",
     "ejs-electron": "^2.1.1",
-    "electron-updater": "^5.0.1",
-    "fs-extra": "^10.1.0",
+    "electron-updater": "^5.3.0",
+    "fs-extra": "^11.1.1",
     "github-syntax-dark": "^0.5.0",
     "got": "^11.8.3",
     "helios-core": "~0.1.0",
@@ -38,7 +38,7 @@
     "winreg": "^1.2.4"
   },
   "devDependencies": {
-    "electron": "^18.2.4",
+    "electron": "^23.2.0",
     "electron-builder": "^23.0.3",
     "eslint": "^8.16.0"
   },
