@@ -121,13 +121,13 @@
             <div class="settingsTabHeader">
                 <span class="settingsTabHeaderText">Paramètres des mods</span>
             </div>
-            <div id="settingsSelServContainer">
-                <div id="settingsSelServContent">
+            <div class="settingsSelServContainer">
+                <div class="settingsSelServContent">
 
                 </div>
-                <div id="settingsSwitchServerContainer">
-                    <div id="settingsSwitchServerContent">
-                        <button id="settingsSwitchServerButton">Changer</button>
+                <div class="settingsSwitchServerContainer">
+                    <div class="settingsSwitchServerContent">
+                        <button class="settingsSwitchServerButton">Changer</button>
                     </div>
                 </div>
             </div>
@@ -171,6 +171,16 @@
                 <span class="settingsTabHeaderText">Paramètres de Java</span>
                 <span class="settingsTabHeaderDesc">Gérer la configuration de Java (avancé).</span>
             </div>
+            <div class="settingsSelServContainer">
+                <div class="settingsSelServContent">
+
+                </div>
+                <div class="settingsSwitchServerContainer">
+                    <div class="settingsSwitchServerContent">
+                        <button class="settingsSwitchServerButton">Changer</button>
+                    </div>
+                </div>
+            </div>
             <div id="settingsMemoryContainer">
                 <div id="settingsMemoryTitle">Mémoire</div>
                 <div id="settingsMemoryContent">
@@ -178,7 +188,7 @@
                         <div class="settingsMemoryContentItem">
                             <span class="settingsMemoryHeader">RAM Maximum</span>
                             <div class="settingsMemoryActionContainer">
-                                <div id="settingsMaxRAMRange" class="rangeSlider" cValue="MaxRAM" min="3" max="8" value="3" step="0.5">
+                                <div id="settingsMaxRAMRange" class="rangeSlider" cValue="MaxRAM" serverDependent min="3" max="8" value="3" step="0.5">
                                     <div class="rangeSliderBar"></div>
                                     <div class="rangeSliderTrack"></div>
                                 </div>
@@ -188,7 +198,7 @@
                         <div class="settingsMemoryContentItem">
                             <span class="settingsMemoryHeader">RAM Minimum</span>
                             <div class="settingsMemoryActionContainer">
-                                <div id="settingsMinRAMRange" class="rangeSlider" cValue="MinRAM" min="3" max="8" value="3" step="0.5">
+                                <div id="settingsMinRAMRange" class="rangeSlider" cValue="MinRAM" serverDependent min="3" max="8" value="3" step="0.5">
                                     <div class="rangeSliderBar"></div>
                                     <div class="rangeSliderTrack"></div>
                                 </div>
@@ -230,11 +240,11 @@
                                 </g>
                             </svg>
                         </div>
-                        <input class="settingsFileSelVal" id="settingsJavaExecVal" type="text" value="null" cValue="JavaExecutable" disabled>
+                        <input class="settingsFileSelVal" id="settingsJavaExecVal" type="text" value="null" cValue="JavaExecutable" serverDependent disabled>
                         <button class="settingsFileSelButton" id="settingsJavaExecSel" dialogTitle="Select Java Executable" dialogDirectory="false">Choose File</button>
                     </div>
                 </div>
-                <div class="settingsFileSelDesc">L'exécutable Java est validé avant le lancement du jeu. <strong>Requis: Java 8 x64.</strong><br> Le chemin doit se terminer par <strong>bin<%= process.platform === 'win32' ? '\\javaw.exe' : '/java' %></strong>.</div>
+                <div class="settingsFileSelDesc">L'exécutable Java est validé avant le lancement du jeu. <strong id="settingsJavaReqDesc">Requis: Java 8 x64.</strong><br> Le chemin doit se terminer par <strong>bin<%= process.platform === 'win32' ? '\\javaw.exe' : '/java' %></strong>.</div>
             </div>
             <div id="settingsJVMOptsContainer">
                 <div id="settingsJVMOptsTitle">Options JVM supplémentaires</div>
@@ -253,9 +263,9 @@
                             </g>
                         </svg>
                     </div>
-                    <input id="settingsJVMOptsVal" cValue="JVMOptions" type="text">
+                    <input id="settingsJVMOptsVal" serverDependent cValue="JVMOptions" type="text">
                 </div>
-                <div id="settingsJVMOptsDesc">Options à fournir à la JVM au moment de l'exécution. <em>-Xms</em> et <em>-Xmx</em> ne doivent pas être inclus.<br><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/<%= process.platform === 'win32' ? 'windows' : 'unix' %>/java.html">Options disponibles pour Java 8</a>.</div>
+                <div id="settingsJVMOptsDesc">Options à fournir à la JVM au moment de l'exécution. <em>-Xms</em> et <em>-Xmx</em> ne doivent pas être inclus.<br><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/<%= process.platform === 'win32' ? 'windows' : 'unix' %>/java.html" id="settingsJvmOptsLink">Options disponibles pour Java 8</a>.</div>
             </div>
         </div>
         <div id="settingsTabLauncher" class="settingsTab" style="display: none;">
