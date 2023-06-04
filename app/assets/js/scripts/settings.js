@@ -156,7 +156,7 @@ function initSettingsValues(){
                     if(cVal === 'MinRAM' || cVal === 'MaxRAM'){
                         let val = gFn.apply(null, gFnOpts)
                         if(val.endsWith('M')){
-                            val = Number(val.substring(0, val.length-1))/1000
+                            val = Number(val.substring(0, val.length-1))/1024
                         } else {
                             val = Number.parseFloat(val)
                         }
