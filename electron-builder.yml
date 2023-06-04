@@ -2,7 +2,7 @@ appId: 'wizardsstorylauncher'
 productName: 'WizardsStoryLauncher'
 artifactName: '${productName}-setup-${version}.${ext}'
 
-copyright: 'Copyright © 2019-2022 Wizards Story'
+copyright: 'Copyright © 2019-2023 Wizards Story'
 
 asar: true
 compression: 'maximum'
