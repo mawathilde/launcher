@@ -2,7 +2,7 @@ appId: 'wizardsstorylauncher'
 productName: 'WizardsStoryLauncher'
 artifactName: '${productName}-setup-${version}.${ext}'
 
-copyright: 'Copyright © 2019-2023 Wizards Story'
+copyright: 'Copyright © 2019-2024 Wizards Story'
 
 asar: true
 compression: 'maximum'
@@ -31,8 +31,9 @@ mac:
   target:
     - target: 'dmg'
       arch:
-        - 'universal'
-  artifactName: '${productName}-setup-${version}.${ext}'
+        - 'x64'
+        - 'arm64'
+  artifactName: '${productName}-setup-${version}-${arch}.${ext}'
   category: 'public.app-category.games'
 
 # Linux Configuration
