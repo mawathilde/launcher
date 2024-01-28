@@ -1,0 +1,297 @@
+[ejs.landing]
+updateAvailableTooltip = "Mise à jour disponible"
+usernamePlaceholder = "Nom d'utilisateur"
+usernameEditButton = "Modifier"
+settingsTooltip = "Paramètres"
+serverStatus = "SERVEUR"
+serverStatusPlaceholder = "HORS LIGNE"
+mojangStatus = "Statut Mojang"
+mojangStatusTooltipTitle = "Services"
+mojangStatusNETitle = "Non&nbsp;Essentiel"
+newsButton = ""
+launchButton = "JOUER"
+launchButtonPlaceholder = "&#8226; Aucun serveur sélectionné"
+launchDetails = "Patientez.."
+newsNavigationStatus = "{currentPage} sur {totalPages}"
+newsErrorLoadSpan = "Chargement..."
+newsErrorFailedSpan = "Échec"
+newsErrorRetryButton = "Réessayer"
+newsErrorNoneSpan = "Pas de nouvelles"
+
+[ejs.login]
+loginCancelText = "Annuler"
+loginSubheader = "Connexion minecraft"
+loginEmailError = "* Valeur invalide"
+loginEmailPlaceholder = "Email ou nom d'utilisateur"
+loginPasswordError = "* Requis"
+loginPasswordPlaceholder = "Mot de passe"
+loginForgotPasswordLink = "https://minecraft.net/password/forgot/"
+loginForgotPasswordText = "Mot de passe oublié?"
+loginRememberMeText = "Se souvenir de moi?"
+loginButtonText = "CONNEXION"
+loginNeedAccountLink = "https://minecraft.net/store/minecraft-java-edition/"
+loginNeedAccountText = "Besoin d'un compte?"
+loginPasswordDisclaimer1 = "Votre mot de passe est envoyé directement à Mojang et n'est jamais stocké."
+loginPasswordDisclaimer2 = "{appName} n'est pas affilié à Mojang AB."
+
+[ejs.loginOptions]
+loginOptionsTitle = "Paramètres de connexion"
+loginWithMicrosoft = "Se connecter avec Microsoft"
+loginWithMojang = "Se connecter avec Mojang"
+cancelButton = "Annuler"
+
+[ejs.overlay]
+serverSelectHeader = "Serveurs disponibles"
+serverSelectConfirm = "Sélectionner"
+serverSelectCancel = "Annuler"
+accountSelectHeader = "Sélectionner un compte"
+accountSelectConfirm = "Sélectionner"
+accountSelectCancel = "Annuler"
+
+[ejs.settings]
+navHeaderText = "Paramètres"
+navAccount = "Compte"
+navMinecraft = "Minecraft"
+navMods = "Mods"
+navJava = "Java"
+navLauncher = "Launcheur"
+navAbout = "À propos"
+navUpdates = "Mises à jour"
+navDone = "Terminé"
+tabAccountHeaderText = "Paramètres du compte"
+tabAccountHeaderDesc = "Ajoutez de nouveaux comptes ou gérez ceux existants."
+microsoftAccount = "Microsoft"
+addMicrosoftAccount = "+ Ajouter un compte Microsoft"
+mojangAccount = "Mojang"
+addMojangAccount = "+ Ajouter un compte Mojang"
+minecraftTabHeaderText = "Paramètres de Minecraft"
+minecraftTabHeaderDesc = "Options liées au lancement du jeu."
+gameResolutionTitle = "Résolution du jeu"
+launchFullscreenTitle = "Lancer en plein écran."
+autoConnectTitle = "Se connecter automatiquement au serveur au lancement."
+launchDetachedTitle = "Lancer le processus du jeu détaché du Launcheur."
+launchDetachedDesc = "Si le jeu n'est pas détaché, fermer le Launcheur fermera également le jeu."
+tabModsHeaderText = "Paramètres des mods"
+tabModsHeaderDesc = "Activer ou désactiver les mods."
+switchServerButton = "Changer"
+requiredMods = "Mods requis"
+optionalMods = "Mods optionnels"
+dropinMods = "Mods à déposer"
+addMods = "Ajouter des mods"
+dropinRefreshNote = "(F5 pour actualiser)"
+shaderpacks = "Packs de shaders"
+shaderpackDesc = "Activez ou désactivez les shaders. Veuillez noter que les shaders ne fonctionneront correctement que sur des configurations puissantes. Vous pouvez ajouter des packs personnalisés ici."
+selectShaderpack = "Sélectionner un pack de shaders"
+tabJavaHeaderText = "Paramètres de Java"
+tabJavaHeaderDesc = "Gérez la configuration de Java (avancé)."
+memoryTitle = "Mémoire"
+maxRAM = "RAM maximale"
+minRAM = "RAM minimale"
+memoryDesc = "La RAM minimale recommandée est de 3 gigaoctets. Définir les valeurs minimale et maximale à la même valeur peut réduire le lag."
+memoryTotalTitle = "Total"
+memoryAvailableTitle = "Disponible"
+javaExecutableTitle = "Exécutable Java"
+javaExecSelDialogTitle = "Sélectionner l'exécutable Java"
+javaExecSelButtonText = "Choisir le fichier"
+javaExecDesc = "L'exécutable Java est validé avant le lancement du jeu."
+javaPathDesc = "Le chemin doit se terminer par <strong>{pathSuffix}</strong>."
+jvmOptsTitle = "Options JVM supplémentaires"
+jvmOptsDesc = "Options à fournir à la JVM au moment de l'exécution. <em>-Xms</em> et <em>-Xmx</em> ne doivent pas être inclus."
+launcherTabHeaderText = "Paramètres du Launcheur"
+launcherTabHeaderDesc = "Options liées au Launcheur lui-même."
+allowPrereleaseTitle = "Autoriser les mises à jour en prerelease."
+allowPrereleaseDesc = "Les pré-lancements incluent de nouvelles fonctionnalités qui peuvent ne pas avoir été entièrement testées ou intégrées.<br>Cela sera toujours vrai si vous utilisez une version en pré-lancement."
+dataDirectoryTitle = "Répertoire des données"
+selectDataDirectory = "Sélectionner le répertoire des données"
+chooseFolder = "Choisir le dossier"
+dataDirectoryDesc = "Tous les fichiers de jeu et les installations locales de Java seront stockés dans le répertoire des données.<br>Les captures d'écran et les sauvegardes de monde sont stockées dans le dossier d'instance pour la configuration de serveur correspondante."
+aboutTabHeaderText = "À propos"
+aboutTabHeaderDesc = "Affichez les informations et les notes de version pour la version actuelle."
+aboutTitle = "{appName}"
+stableRelease = "Version stable"
+versionText = "Version "
+sourceGithub = "Source (GitHub)"
+support = "Support"
+devToolsConsole = "Console DevTools"
+releaseNotes = "Notes de version"
+changelog = "Journal des modifications"
+noReleaseNotes = "Pas de notes de version"
+viewReleaseNotes = "Voir les notes de version sur GitHub"
+launcherUpdatesHeaderText = "Mises à jour du Launcheur"
+launcherUpdatesHeaderDesc = "Téléchargez, installez et consultez les mises à jour du Launcheur."
+checkForUpdates = "Vérifier les mises à jour"
+whatsNew = "Quoi de neuf"
+updateReleaseNotes = "Notes de version de la mise à jour"
+
+[ejs.waiting]
+waitingText = "En attente de Microsoft.."
+
+[ejs.welcome]
+continueButton = "CONTINUER"
+
+
+[js.discord]
+waiting = "En attente du client.."
+state = "Serveur: {shortId}"
+
+[js.index]
+microsoftLoginTitle = "Connexion Microsoft"
+microsoftLogoutTitle = "Déconnexion Microsoft"
+
+[js.login]
+login = "CONNEXION"
+loggingIn = "CONNEXION EN COURS"
+success = "SUCCÈS"
+tryAgain = "Réessayer"
+
+[js.login.error]
+invalidValue = "* Valeur invalide"
+requiredValue = "* Requis"
+
+[js.login.error.unknown]
+title = "Erreur inconnue lors de la connexion"
+desc = "Une erreur inconnue s'est produite. Veuillez consulter la console pour plus de détails."
+
+[js.landing.launch]
+pleaseWait = "Veuillez patienter.."
+failureTitle = "Erreur lors du lancement"
+failureText = "Voir la console (CTRL + Shift + i) pour plus de détails."
+okay = "D'accord"
+
+[js.landing.selectedAccount]
+noAccountSelected = "Aucun compte sélectionné"
+
+[js.landing.selectedServer]
+noSelection = "Aucune sélection"
+loading = "Chargement.."
+
+[js.landing.serverStatus]
+server = "SERVEUR"
+offline = "HORS LIGNE"
+players = "JOUEURS"
+
+[js.landing.systemScan]
+checking = "Vérification des informations système.."
+noCompatibleJava = "Aucune installation de Java compatible trouvée"
+installJavaMessage = "Pour lancer Minecraft, vous avez besoin d'une installation 64 bits de Java {major}. Voulez-vous que nous installions une copie pour vous?"
+installJava = "Installer Java"
+installJavaManually = "Installer manuellement"
+javaDownloadPrepare = "Préparation du téléchargement de Java.."
+javaDownloadFailureTitle = "Erreur lors du téléchargement de Java"
+javaDownloadFailureText = "Voir la console (CTRL + Shift + i) pour plus de détails."
+javaRequired = "Java est requis<br>pour lancer"
+javaRequiredMessage = 'Une installation x64 valide de Java {major} est requise pour lancer.<br><br>Veuillez vous référer à notre <a href="https://github.com/dscalzi/HeliosLauncher/wiki/Java-Management#manually-installing-a-valid-version-of-java">Guide de gestion de Java</a> pour des instructions sur comment installer manuellement Java.'
+javaRequiredDismiss = "Je comprends"
+javaRequiredCancel = "Retour"
+
+[js.landing.downloadJava]
+findJdkFailure = "Impossible de trouver la distribution OpenJDK."
+javaDownloadCorruptedError = "Le JDK téléchargé a un mauvais hash, le fichier peut être corrompu."
+extractingJava = "Extraction de Java"
+javaInstalled = "Java installé!"
+
+[js.landing.dlAsync]
+loadingServerInfo = "Chargement des informations du serveur.."
+fatalError = "Erreur fatale"
+unableToLoadDistributionIndex = "Impossible de charger une copie de l'index de distribution. Voir la console (CTRL + Shift + i) pour plus de détails."
+pleaseWait = "Veuillez patienter.."
+errorDuringLaunchTitle = "Erreur lors du lancement"
+seeConsoleForDetails = "Voir la console (CTRL + Shift + i) pour plus de détails."
+validatingFileIntegrity = "Validation de l'intégrité du fichier.."
+errorDuringFileVerificationTitle = "Erreur lors de la vérification du fichier"
+downloadingFiles = "Téléchargement des fichiers.."
+errorDuringFileDownloadTitle = "Erreur lors du téléchargement du fichier"
+preparingToLaunch = "Préparation du lancement.."
+launchingGame = "Lancement du jeu.."
+launchWrapperNotDownloaded = "Le fichier principal, LaunchWrapper, n'a pas été correctement téléchargé. En conséquence, le jeu ne peut pas être lancé.<br><br>Pour résoudre ce problème, désactivez temporairement votre logiciel antivirus et relancez le jeu.<br><br>Si vous avez le temps, veuillez <a href=\"https://github.com/dscalzi/HeliosLauncher/issues\">soumettre un problème</a> et nous faire savoir quel logiciel antivirus vous utilisez. Nous les contacterons et essaierons de régler le problème."
+doneEnjoyServer = "Terminé. Profitez du serveur!"
+checkConsoleForDetails = "Veuillez consulter la console (CTRL + Shift + i) pour plus de détails."
+
+[js.landing.news]
+checking = "Vérification des nouvelles"
+
+[js.landing.discord]
+loading = "Chargement du jeu.."
+joining = "En route pour Westeros!"
+joined = "Exploration du royaume!"
+
+[js.overlay]
+dismiss = "Rejeter"
+
+[js.settings.fileSelectors]
+executables = "Exécutables"
+allFiles = "Tous les fichiers"
+
+[js.settings.mstfLogin]
+errorTitle = "Quelque chose s'est mal passé"
+errorMessage = "L'authentification Microsoft a échoué. Veuillez réessayer."
+okButton = "OK"
+
+[js.settings.mstfLogout]
+errorTitle = "Quelque chose s'est mal passé"
+errorMessage = "La déconnexion de Microsoft a échoué. Veuillez réessayer."
+okButton = "OK"
+
+[js.settings.authAccountSelect]
+selectButton = "Sélectionner le compte"
+selectedButton = "Compte sélectionné &#10004;"
+
+[js.settings.authAccountLogout]
+lastAccountWarningTitle = "Avertissement<br>C'est votre dernier compte"
+lastAccountWarningMessage = "Pour utiliser le Launcheur, vous devez être connecté à au moins un compte. Vous devrez vous reconnecter après.<br><br>Êtes-vous sûr de vouloir vous déconnecter?"
+confirmButton = "Je suis sûr"
+cancelButton = "Annuler"
+
+[js.settings.authAccountPopulate]
+username = "Nom d'utilisateur"
+uuid = "UUID"
+selectAccount = "Sélectionner le compte"
+selectedAccount = "Compte sélectionné ✓"
+logout = "Se déconnecter"
+
+[js.settings.dropinMods]
+removeButton = "Supprimer"
+deleteFailedTitle = "Échec de la suppression<br>du mod {fullName}"
+deleteFailedMessage = "Assurez-vous que le fichier n'est pas utilisé et réessayez."
+failedToggleTitle = "Échec de l'activation/désactivation<br>d'un ou plusieurs mods"
+okButton = "D'accord"
+
+[js.settings.serverListing]
+mainServer = "Serveur principal"
+
+[js.settings.java]
+selectedJava = "Sélectionné: Java {version} ({vendor})"
+invalidSelection = "Sélection invalide"
+requiresJava = "Nécessite Java {major} x64."
+availableOptions = "Options disponibles pour Java {major} (HotSpot VM)"
+
+[js.settings.about]
+preReleaseTitle = "Pre-release"
+stableReleaseTitle = "Lancement stable"
+releaseNotesFailed = "Échec du chargement des notes de version."
+
+[js.settings.updates]
+newReleaseTitle = "Nouvelle version disponible"
+newPreReleaseTitle = "Nouveau pre-release disponible"
+downloadingButton = "Téléchargement.."
+downloadButton = 'Télécharger depuis GitHub<span style="font-size: 10px;color: gray;text-shadow: none !important;">Fermez le Launcheur et exécutez le dmg pour mettre à jour.</span>'
+latestVersionTitle = "Vous utilisez la dernière version"
+checkForUpdatesButton = "Vérifier les mises à jour"
+checkingForUpdatesButton = "Vérification des mises à jour.."
+
+[js.uibinder.startup]
+fatalErrorTitle = "Erreur fatale: Impossible de charger l'index de distribution"
+fatalErrorMessage = "Une connexion n'a pas pu être établie avec nos serveurs pour télécharger l'index de distribution. Aucune copie locale n'était disponible pour le chargement. <br><br>L'index de distribution est un fichier essentiel qui fournit les dernières informations sur le serveur. Le Launcheur ne peut pas démarrer sans lui. Assurez-vous d'être connecté à internet et relancez l'application."
+closeButton = "Fermer"
+
+[js.uibinder.validateAccount]
+failedMessageTitle = "Échec de l'actualisation de la connexion"
+failedMessage = "Nous n'avons pas pu actualiser la connexion pour <strong>{account}</strong>. Veuillez sélectionner un autre compte ou vous reconnecter."
+failedMessageSelectAnotherAccount = "Nous n'avons pas pu actualiser la connexion pour <strong>{account}</strong>. Veuillez vous reconnecter."
+loginButton = "Connexion"
+selectAnotherAccountButton = "Sélectionner un autre compte"
+
+[js.uicore.autoUpdate]
+checkingForUpdateButton = "Vérification des mises à jour..."
+installNowButton = "Installer maintenant"
+checkForUpdatesButton = "Vérifier les mises à jour"

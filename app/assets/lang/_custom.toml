@@ -1,0 +1,20 @@
+# Custom Language File for Launcher Customizer
+
+[ejs.app]
+title = "Wizards Story"
+
+[ejs.landing]
+mediaGitHubURL = ""
+mediaTwitterURL = "#"
+mediaInstagramURL = "#"
+mediaYouTubeURL = "#"
+mediaDiscordURL = "https://discord.gg/wizards-story"
+
+[ejs.settings]
+sourceGithubLink = "https://github.com/dscalZi/HeliosLauncher"
+supportLink = "https://github.com/dscalZi/HeliosLauncher/issues"
+
+[ejs.welcome]
+welcomeHeader = "Test"
+welcomeDescription = ""
+welcomeDescCTA = ""
