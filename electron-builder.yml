@@ -2,7 +2,7 @@ appId: 'wizardsstorylauncher'
 productName: 'WizardsStoryLauncher'
 artifactName: '${productName}-setup-${version}.${ext}'
 
-copyright: 'Copyright © 2019-2022 Wizards Story'
+copyright: 'Copyright © 2019-2024 Wizards Story'
 
 asar: true
 compression: 'maximum'
@@ -29,7 +29,7 @@ nsis:
 # macOS Configuration
 mac:
   target:
-    - target: 'dmg'
+    - target: 'default'
       arch:
         - 'x64'
         - 'arm64'
