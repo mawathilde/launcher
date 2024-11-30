@@ -3207,7 +3207,7 @@ input:checked + .toggleSwitchSlider:before {
 /* Maintains maximum width on the status bar. */
 #server_status_wrapper {
     display: inline-flex;
-    width: 75px;
+    width: 100px;
 }
 
 /* Span which displays the player count of the selected server. */
@@ -3217,6 +3217,7 @@ input:checked + .toggleSwitchSlider:before {
     font-weight: 900;
     text-shadow: 0px 0px 12px #23aa23;
     margin-right: 7px;
+    margin-left: 5px;
 }
 
 /* Wrapper container for the mojang status bar. */
