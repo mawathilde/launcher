@@ -40,6 +40,42 @@ class ProcessBuilder {
         this.usingFabricLoader = false
         this.llPath = null
     }
+
+    /**
+     * Get the architecture string for native library resolution.
+     * Maps Node.js process.arch values to Minecraft native library naming conventions.
+     * 
+     * @returns {string} The architecture string (e.g., '64' for x64, 'arm64' for arm64)
+     */
+    static getMinecraftArch() {
+        const arch = process.arch
+        // Map Node.js arch to Minecraft native naming
+        const archMap = {
+            'x64': '64',      // Intel/AMD 64-bit
+            'arm64': 'arm64', // ARM 64-bit (Apple Silicon, etc.)
+            'ia32': '32'      // 32-bit (legacy)
+        }
+        return archMap[arch] || '64' // Default to 64-bit if unknown
+    }
+
+    /**
+     * Normalize architecture string for comparison.
+     * Handles both Minecraft naming (64, arm64) and Node.js naming (x64, arm64).
+     * 
+     * @param {string} arch - Architecture string to normalize
+     * @returns {string} Normalized architecture string
+     */
+    static normalizeArch(arch) {
+        const normalized = {
+            'x64': 'x64',
+            '64': 'x64',
+            'arm64': 'arm64',
+            'aarch64': 'arm64',
+            'ia32': 'ia32',
+            '32': 'ia32'
+        }
+        return normalized[arch] || arch
+    }
     
     /**
      * Convienence method to run the functions typically used to build a process.
@@ -723,7 +759,7 @@ class ProcessBuilder {
                 if(lib.natives != null) {
                     // Extract the native library.
                     const exclusionArr = lib.extract != null ? lib.extract.exclude : ['META-INF/']
-                    const artifact = lib.downloads.classifiers[lib.natives[getMojangOS()].replace('${arch}', process.arch.replace('x', ''))]
+                    const artifact = lib.downloads.classifiers[lib.natives[getMojangOS()].replace('${arch}', ProcessBuilder.getMinecraftArch())]
 
                     // Location of native zip.
                     const to = path.join(this.libPath, artifact.path)
@@ -762,7 +798,9 @@ class ProcessBuilder {
                     // const os = regexTest[1]
                     const arch = regexTest[2] ?? 'x64'
 
-                    if(arch != process.arch) {
+                    // Normalize both architectures for comparison
+                    // Handles x64/64 and arm64/aarch64 equivalence
+                    if(ProcessBuilder.normalizeArch(arch) !== ProcessBuilder.normalizeArch(process.arch)) {
                         continue
                     }
 
