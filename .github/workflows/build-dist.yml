@@ -17,7 +17,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
+        os: [macos-13, ubuntu-latest, windows-latest]  # macos-13 is Intel, better for cross-compilation
 
     steps:
       - name: Check out Git repository
@@ -40,6 +40,7 @@ jobs:
       - name: Build
         run: npm run dist
         shell: bash
+        
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
