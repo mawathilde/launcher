@@ -11,6 +11,7 @@ const remote                         = require('@electron/remote')
 const isDev                          = require('./assets/js/isdev')
 const { LoggerUtil }                 = require('helios-core')
 const Lang                           = require('./assets/js/langloader')
+const { REMOTE_SERVER_BASE_URL }     = require('./assets/js/remoteconfig')
 
 const loggerUICore             = LoggerUtil.getLogger('UICore')
 const loggerAutoUpdater        = LoggerUtil.getLogger('AutoUpdater')
@@ -49,7 +50,7 @@ if(!isDev){
                 loggerAutoUpdater.info('New update available', info.version)
                 
                 if(process.platform === 'darwin'){
-                    info.darwindownload = `https://github.com/mawathilde/launcher/releases/download/v${info.version}/WizardsStoryLauncher-setup-${info.version}${process.arch === 'arm64' ? '-arm64' : '-x64'}.dmg`
+                    info.darwindownload = `${REMOTE_SERVER_BASE_URL}/WizardsStoryLauncher-setup-${info.version}${process.arch === 'arm64' ? '-arm64' : '-x64'}.dmg`
                     showUpdateUI(info)
                 }
                 

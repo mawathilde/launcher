@@ -1,0 +1,10 @@
+{
+  "releases": [
+    {
+      "version": "v2.1.1",
+      "title": "Version 2.1.1 - Remote Server Update",
+      "changelog": "<p>This release migrates the launcher to use a remote download server instead of GitHub.</p><h3>Changes:</h3><ul><li>Removed GitHub dependency for updates</li><li>Implemented remote server-based distribution system</li><li>Updated release notes fetching mechanism</li></ul>",
+      "url": "https://download.wizards-story.net/releases/v2.1.1"
+    }
+  ]
+}
