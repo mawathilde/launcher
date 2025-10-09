@@ -14,7 +14,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-13, ubuntu-latest, windows-latest]
+        include:
+          # macOS Intel (x64)
+          - os: macos-13
+            arch: x64
+          # macOS ARM (arm64) - using macOS 15
+          - os: macos-15
+            arch: arm64
+          # Linux
+          - os: ubuntu-latest
+            arch: x64
+          # Windows
+          - os: windows-latest
+            arch: x64
 
     steps:
       - name: Check out Git repository
@@ -39,7 +51,13 @@ jobs:
         shell: bash
         continue-on-error: true
 
-      - name: Build Application
+      - name: Build Application (macOS)
+        if: runner.os == 'macOS'
+        run: npm run dist -- --${{ matrix.arch }}
+        shell: bash
+
+      - name: Build Application (Linux/Windows)
+        if: runner.os != 'macOS'
         run: npm run dist
         shell: bash
 
@@ -47,7 +65,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: build-${{ matrix.os }}
+          name: build-${{ matrix.os }}-${{ matrix.arch }}
           path: |
             dist/*.exe
             dist/*.dmg
