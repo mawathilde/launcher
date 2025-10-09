@@ -4,6 +4,7 @@ const semver = require('semver')
 
 const DropinModUtil  = require('./assets/js/dropinmodutil')
 const { MSFT_OPCODE, MSFT_REPLY_TYPE, MSFT_ERROR } = require('./assets/js/ipcconstants')
+const { REMOTE_RELEASES_URL } = require('./assets/js/remoteconfig')
 
 const settingsState = {
     invalid: new Set()
@@ -1448,28 +1449,26 @@ function populateAboutVersionInformation(){
 }
 
 /**
- * Fetches the GitHub atom release feed and parses it for the release notes
+ * Fetches the release information from the remote server and parses it for the release notes
  * of the current version. This value is displayed on the UI.
  */
 function populateReleaseNotes(){
     $.ajax({
-        url: 'https://github.com/mawathilde/launcher/releases.atom',
+        url: REMOTE_RELEASES_URL,
         success: (data) => {
             const version = 'v' + remote.app.getVersion()
-            const entries = $(data).find('entry')
             
-            for(let i=0; i<entries.length; i++){
-                const entry = $(entries[i])
-                let id = entry.find('id').text()
-                id = id.substring(id.lastIndexOf('/')+1)
-
-                if(id === version){
-                    settingsAboutChangelogTitle.innerHTML = entry.find('title').text()
-                    settingsAboutChangelogText.innerHTML = entry.find('content').text()
-                    settingsAboutChangelogButton.href = entry.find('link').attr('href')
-                }
+            // Find the release matching current version
+            const releases = data.releases || []
+            const release = releases.find(r => r.version === version)
+            
+            if(release){
+                settingsAboutChangelogTitle.innerHTML = release.title || version
+                settingsAboutChangelogText.innerHTML = release.changelog || Lang.queryJS('settings.about.noReleaseNotes')
+                settingsAboutChangelogButton.href = release.url || '#'
+            } else {
+                settingsAboutChangelogText.innerHTML = Lang.queryJS('settings.about.noReleaseNotes')
             }
-
         },
         timeout: 2500
     }).catch(err => {

@@ -1,3 +1,2 @@
-organisation: mawathilde
-repo: launcher
-provider: github
+provider: generic
+url: https://download.wizards-story.net/
