@@ -68,16 +68,30 @@ The actual installer files must be available at the base URL:
 
 ## Configuration
 
-The remote server URLs are configured in `app/assets/js/remoteconfig.js`:
+The remote server URLs are configured in two places:
 
-```javascript
-exports.REMOTE_SERVER_BASE_URL = 'https://download.wizards-story.net'
-exports.REMOTE_DISTRO_URL = `${exports.REMOTE_SERVER_BASE_URL}/distribution.json`
-exports.REMOTE_RELEASES_URL = `${exports.REMOTE_SERVER_BASE_URL}/releases.json`
-exports.REMOTE_LATEST_URL = `${exports.REMOTE_SERVER_BASE_URL}/latest.yml`
-```
+1. **Application Configuration** (`app/assets/js/remoteconfig.js`):
+   ```javascript
+   exports.REMOTE_SERVER_BASE_URL = 'https://download.wizards-story.net'
+   exports.REMOTE_DISTRO_URL = `${exports.REMOTE_SERVER_BASE_URL}/distribution.json`
+   exports.REMOTE_RELEASES_URL = `${exports.REMOTE_SERVER_BASE_URL}/releases.json`
+   exports.REMOTE_LATEST_URL = `${exports.REMOTE_SERVER_BASE_URL}/latest.yml`
+   ```
 
-To change the remote server, simply update the `REMOTE_SERVER_BASE_URL` constant.
+2. **Auto-Update Configuration**:
+   - **Production builds** (`electron-builder.yml`):
+     ```yaml
+     publish:
+       provider: generic
+       url: https://download.wizards-story.net/
+     ```
+   - **Development mode** (`dev-app-update.yml`):
+     ```yaml
+     provider: generic
+     url: https://download.wizards-story.net/
+     ```
+
+To change the remote server, update both the `REMOTE_SERVER_BASE_URL` in `remoteconfig.js` and the `url` in both YAML configuration files.
 
 ## Benefits of Remote Server System
 

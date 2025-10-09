@@ -7,6 +7,11 @@ copyright: 'Copyright © 2019-2024 Wizards Story'
 asar: true
 compression: 'maximum'
 
+# Auto-update configuration
+publish:
+  provider: generic
+  url: https://download.wizards-story.net/
+
 files:
   - '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,.eslintrc.json}'
 
