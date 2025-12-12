@@ -1,0 +1,79 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (e.g., v2.1.2)'
+        required: true
+
+jobs:
+  publish:
+    name: Build & Publish Release on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    permissions:
+      contents: write
+
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # macOS Intel (x64)
+          - os: macos-15-intel
+            arch: x64
+          # macOS ARM (arm64)
+          - os: macos-15
+            arch: arm64
+          # Linux
+          - os: ubuntu-latest
+            arch: x64
+          # Windows
+          - os: windows-latest
+            arch: x64
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+
+      - name: Install Dependencies
+        run: npm ci
+        shell: bash
+
+      - name: Build Application (macOS)
+        if: runner.os == 'macOS'
+        run: npm run dist -- --${{ matrix.arch }}
+        shell: bash
+
+      - name: Build Application (Linux/Windows)
+        if: runner.os != 'macOS'
+        run: npm run dist
+        shell: bash
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: "Release ${{ github.ref_name }}"
+          draft: false
+          prerelease: false
+          files: |
+            dist/latest*.yml
+            dist/*.exe
+            dist/*.dmg
+            dist/*.deb

@@ -1,11 +1,10 @@
 appId: 'wizardsstorylauncher'
-productName: 'WizardsStoryLauncher'
+productName: 'Wizards Story'
 artifactName: '${productName}-setup-${version}.${ext}'
-
-copyright: 'Copyright © 2019-2024 Wizards Story'
-
 asar: true
 compression: 'maximum'
+
+copyright: 'Copyright © 2019-2025 Wizards Story'
 
 files:
   - '!{dist,.gitignore,.vscode,docs,dev-app-update.yml,.nvmrc,.eslintrc.json}'
@@ -28,13 +27,18 @@ nsis:
 
 # macOS Configuration
 mac:
-  target:
-    - target: 'default'
-      arch:
-        - 'x64'
-        - 'arm64'
   artifactName: '${productName}-setup-${version}-${arch}.${ext}'
-  category: 'public.app-category.games'
+  category: public.app-category.games
+  target:
+    - dmg
+  hardenedRuntime: true
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  gatekeeperAssess: false
+
+
+dmg:
+  sign: false
 
 # Linux Configuration
 linux: 
