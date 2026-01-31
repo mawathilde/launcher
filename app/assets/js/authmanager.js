@@ -1,9 +1,10 @@
 /**
  * AuthManager
  * 
- * This module aims to abstract login procedures. Results from Microsoft's OAuth2.0 flow
- * are processed and stored in the config using the ConfigManager. All login procedures 
- * should be made through this module.
+ * This module aims to abstract login procedures. Results from Mojang's REST api
+ * are retrieved through our Mojang module. These results are processed and stored,
+ * if applicable, in the config using the ConfigManager. All login procedures should
+ * be made through this module.
  * 
  * @module authmanager
  */
@@ -11,10 +12,43 @@
 const ConfigManager          = require('./configmanager')
 const { LoggerUtil }         = require('helios-core')
 const { RestResponseStatus } = require('helios-core/common')
-const { MicrosoftAuth, microsoftErrorDisplayable, MicrosoftErrorCode } = require('helios-core/microsoft')
+const { MicrosoftAuth, MicrosoftErrorCode } = require('helios-core/microsoft')
 const { AZURE_CLIENT_ID }    = require('./ipcconstants')
+const Lang = require('./langloader')
 
 const log = LoggerUtil.getLogger('AuthManager')
+
+// Error messages
+
+function microsoftErrorDisplayable(errorCode) {
+    switch (errorCode) {
+        case MicrosoftErrorCode.NO_PROFILE:
+            return {
+                title: Lang.queryJS('auth.microsoft.error.noProfileTitle'),
+                desc: Lang.queryJS('auth.microsoft.error.noProfileDesc')
+            }
+        case MicrosoftErrorCode.NO_XBOX_ACCOUNT:
+            return {
+                title: Lang.queryJS('auth.microsoft.error.noXboxAccountTitle'),
+                desc: Lang.queryJS('auth.microsoft.error.noXboxAccountDesc')
+            }
+        case MicrosoftErrorCode.XBL_BANNED:
+            return {
+                title: Lang.queryJS('auth.microsoft.error.xblBannedTitle'),
+                desc: Lang.queryJS('auth.microsoft.error.xblBannedDesc')
+            }
+        case MicrosoftErrorCode.UNDER_18:
+            return {
+                title: Lang.queryJS('auth.microsoft.error.under18Title'),
+                desc: Lang.queryJS('auth.microsoft.error.under18Desc')
+            }
+        case MicrosoftErrorCode.UNKNOWN:
+            return {
+                title: Lang.queryJS('auth.microsoft.error.unknownTitle'),
+                desc: Lang.queryJS('auth.microsoft.error.unknownDesc')
+            }
+    }
+}
 
 // Functions
 
@@ -35,7 +69,7 @@ async function fullMicrosoftAuthFlow(entryCode, authMode) {
     try {
 
         let accessTokenRaw
-        let accessToken
+        let accessToken 
         if(authMode !== AUTH_MODE.MC_REFRESH) {
             const accessTokenResponse = await MicrosoftAuth.getAccessToken(entryCode, authMode === AUTH_MODE.MS_REFRESH, AZURE_CLIENT_ID)
             if(accessTokenResponse.responseStatus === RestResponseStatus.ERROR) {
@@ -90,7 +124,7 @@ function calculateExpiryDate(nowMs, epiresInS) {
 }
 
 /**
- * Add a Microsoft account. This will pass the provided auth code to Microsoft's OAuth2.0 flow.
+ * Add a Microsoft account. This will pass the provided auth code to Mojang's OAuth2.0 flow.
  * The resultant data will be stored as an auth account in the configuration database.
  * 
  * @param {string} authCode The authCode obtained from microsoft.
@@ -100,6 +134,7 @@ exports.addMicrosoftAccount = async function(authCode) {
 
     const fullAuth = await fullMicrosoftAuthFlow(authCode, AUTH_MODE.FULL)
 
+    // Advance expiry by 10 seconds to avoid close calls.
     const now = new Date().getTime()
 
     const ret = ConfigManager.addMicrosoftAuthAccount(
@@ -113,7 +148,6 @@ exports.addMicrosoftAccount = async function(authCode) {
     )
     ConfigManager.save()
 
-    log.info('Microsoft account added successfully:', fullAuth.mcProfile.name)
     return ret
 }
 
@@ -150,21 +184,18 @@ async function validateSelectedMicrosoftAccount(){
     const mcExpired = now >= mcExpiresAt
 
     if(!mcExpired) {
-        log.info('Minecraft access token is still valid.')
         return true
     }
 
-    log.info('Minecraft access token expired, refreshing...')
+    // MC token expired. Check MS token.
 
     const msExpiresAt = current.microsoft.expires_at
     const msExpired = now >= msExpiresAt
 
-    try {
-        let res
-        if(msExpired) {
-            // MS expired, do full refresh.
-            log.info('Microsoft access token expired, performing full refresh.')
-            res = await fullMicrosoftAuthFlow(current.microsoft.refresh_token, AUTH_MODE.MS_REFRESH)
+    if(msExpired) {
+        // MS expired, do full refresh.
+        try {
+            const res = await fullMicrosoftAuthFlow(current.microsoft.refresh_token, AUTH_MODE.MS_REFRESH)
 
             ConfigManager.updateMicrosoftAuthAccount(
                 current.uuid,
@@ -174,10 +205,15 @@ async function validateSelectedMicrosoftAccount(){
                 calculateExpiryDate(now, res.accessToken.expires_in),
                 calculateExpiryDate(now, res.mcToken.expires_in)
             )
-        } else {
-            // Only MC expired, use existing MS token.
-            log.info('Microsoft access token still valid, refreshing Minecraft token only.')
-            res = await fullMicrosoftAuthFlow(current.microsoft.access_token, AUTH_MODE.MC_REFRESH)
+            ConfigManager.save()
+            return true
+        } catch(_err) {
+            return false
+        }
+    } else {
+        // Only MC expired, use existing MS token.
+        try {
+            const res = await fullMicrosoftAuthFlow(current.microsoft.access_token, AUTH_MODE.MC_REFRESH)
 
             ConfigManager.updateMicrosoftAuthAccount(
                 current.uuid,
@@ -187,13 +223,12 @@ async function validateSelectedMicrosoftAccount(){
                 current.microsoft.expires_at,
                 calculateExpiryDate(now, res.mcToken.expires_in)
             )
+            ConfigManager.save()
+            return true
         }
-        ConfigManager.save()
-        log.info('Account tokens refreshed successfully.')
-        return true
-    } catch(err) {
-        log.error('Failed to refresh account tokens:', err)
-        return false
+        catch(_err) {
+            return false
+        }
     }
 }
 

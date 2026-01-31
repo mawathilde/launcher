@@ -12,8 +12,13 @@ exports.loadLanguage = function(id){
 exports.query = function(id, placeHolders){
     let query = id.split('.')
     let res = lang
-    for(let q of query){
-        res = res[q]
+
+    for(let key of query){
+        if (res && typeof res === 'object' && key in res) {
+            res = res[key]
+        } else {
+            return id;
+        }
     }
     let text = res === lang ? '' : res
     if (placeHolders) {
